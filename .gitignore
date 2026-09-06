@@ -1,0 +1,29 @@
+# Local deployment outputs and downloads
+*.log
+*-status.json
+*.partial
+*.wsl
+*.vhdx
+*.tar.gz
+*.zip
+
+# Compiler and test outputs
+build/
+build.*/
+build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+manual-check
+*.o
+*.a
+*.so
+*.so.*
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editor-local files (shared example settings are tracked)
+.DS_Store
+Thumbs.db
+*.code-workspace

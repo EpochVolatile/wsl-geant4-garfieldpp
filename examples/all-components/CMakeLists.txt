@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.16)
+project(all_components LANGUAGES CXX)
+find_package(ROOT REQUIRED COMPONENTS Core Hist)
+find_package(Geant4 REQUIRED)
+find_package(Garfield REQUIRED)
+include(${Geant4_USE_FILE})
+add_executable(all-components main.cc)
+target_compile_features(all-components PRIVATE cxx_std_17)
+target_link_libraries(all-components PRIVATE
+  Garfield::Garfield ${Geant4_LIBRARIES} ROOT::Core ROOT::Hist)

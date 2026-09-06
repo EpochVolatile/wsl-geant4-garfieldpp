@@ -1,0 +1,38 @@
+name: Script checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bash-and-release-selection:
+    name: Bash syntax and release selection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Bash syntax
+        run: |
+          bash -n install-particle-stack.sh
+          bash -n verify-no-paths.sh
+      - name: Test official release selection with local fixtures
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+  windows-script-mocks:
+    name: Windows scripts (${{ matrix.shell }})
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: [pwsh, powershell]
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test WSL continuation without changing the host
+        run: ./tests/test-resume-wsl.ps1
+      - name: Test Windows wrapper arguments and failure status
+        run: ./tests/test-windows-wrapper.ps1
