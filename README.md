@@ -2,6 +2,8 @@
 
 本项目帮助你在 Windows 的 **WSL 2 + AlmaLinux 9 x86_64** 中安装粒子模拟与探测器开发环境，并通过 Windows 版 VS Code 连接 Linux 编写、编译和调试程序。
 
+**已经安装好了？** 请直接阅读[日常仿真操作手册](docs/DAILY_SIMULATION_GUIDE.zh-CN.md)：连接 WSL、写代码、编译测试、断点调试、Geant4 B1 GUI 和 Garfield++ 电场 GUI。
+
 安装完成后，新登录的 Linux 终端可直接使用 `root`、`root-config`、`geant4-config`、`cmake` 和 `g++`。CMake 能发现 ROOT、Geant4、Garfield++；普通 C++ 编译无需手写这些库的 `-I`、`-L` 目录。程序仍须声明使用哪些库，例如 CMake 的 `target_link_libraries` 或编译器的 `-lGarfield`。
 
 **本仓库提供脚本和示例，不附带 WSL 镜像、软件二进制、物理数据库或个人运行日志。** 安装时从各项目的官方来源下载。已有真实机器上的编译、模拟、图形界面和普通用户编译验证；验证范围与尚未完成的验证见[实测记录](#实测记录与验证边界)。
